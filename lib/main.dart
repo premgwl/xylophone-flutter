@@ -4,77 +4,42 @@ import 'package:audioplayers/audio_cache.dart';
 void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
-
-  void playAudio(int number){
+  void playAudio(int number) {
     AudioCache().play('note$number.wav');
+  }
+
+  Expanded buildKey(int number, Color clr){
+    return Expanded(
+      child: TextButton(
+        style: ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll<Color>(
+                clr)),
+        onPressed: () {
+          playAudio(number);
+        },
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
-          child: Container(
-              child: Column(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              TextButton(
-                style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll<Color>(
-                        Colors.deepPurpleAccent)),
-                onPressed: () {
-                  playAudio(1);
-                },
-              ),
-              TextButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.indigoAccent)),
-                onPressed: () {
-                  playAudio(2);
-                },
-              ),
-              TextButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.blueAccent)),
-                onPressed: () {
-                playAudio(3);
-                  },
-              ),
-              TextButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.greenAccent)),
-                onPressed: () {
-                  playAudio(4);
-                },
-              ),
-              TextButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.yellowAccent)),
-                onPressed: () {
-                  playAudio(5);
-                },
-              ),
-              TextButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.orangeAccent)),
-                onPressed: () {
-                  playAudio(6);
-                },
-              ),
-              TextButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.redAccent)),
-                onPressed: () {
-                  playAudio(7);
-                },
-              ),
+              buildKey(1, Colors.purpleAccent),
+              buildKey(2, Colors.indigoAccent),
+              buildKey(3, Colors.blueAccent),
+              buildKey(4, Colors.greenAccent),
+              buildKey(5, Colors.yellowAccent),
+              buildKey(6, Colors.orangeAccent),
+              buildKey(7, Colors.redAccent),
             ],
-          )),
+          ),
         ),
       ),
     );
